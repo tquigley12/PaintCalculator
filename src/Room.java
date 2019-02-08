@@ -1,9 +1,12 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Room {
+public class Room implements Serializable {
 
     private ArrayList<Wall> wallList;
+    private static int roomCount = 0;
+    private int roomNum = 0;
 
     public Room(double length, double width, double height) throws BadWidthException, BadHeightException {
         wallList = new ArrayList<Wall>();
@@ -16,6 +19,8 @@ public class Room {
         wallList.add(wallC);
         Wall wallD = new Wall(width, height);
         wallList.add(wallD);
+        roomCount++;
+        roomNum = roomCount;
     }
 
     public double getArea() {
@@ -28,4 +33,13 @@ public class Room {
 
         return area;
     }
+    
+    @Override
+    public String toString() {
+        // return the room number and area in the toString
+        String str = "Room number: " + roomNum + 
+                     "\nArea: " + getArea();
+        return str;
+    }
+    
 }

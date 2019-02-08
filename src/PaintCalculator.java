@@ -1,20 +1,25 @@
 
+import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PaintCalculator {
+public class PaintCalculator implements Serializable {
 
     private List<Room> roomList = new ArrayList<Room>();
     private Scanner keyboard;
-
-    public static void main(String[] args) {
+    
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         new PaintCalculator();
     }
 
-    public PaintCalculator() {
+    public PaintCalculator() throws FileNotFoundException, IOException {
         keyboard = new Scanner(System.in);
-
+        
         int option = 0;
 
         while (option != 5) {
@@ -28,10 +33,14 @@ public class PaintCalculator {
                         createRoom();
                         break;
                     case 2:
-                        // writeFile();
+                        writeFile();
+                        // RoomWriter roomWriter = new RoomWriter();
+                        // roomWriter.writeRoomFile(fileName, roomList);
                         break;
                     case 3:
                         // readFile();
+                        // RoomReader roomReader = new RoomReader();
+                        // roomReader.readRoomFile(fileName);
                         break;
                     case 4:
                         printRooms();
@@ -47,6 +56,11 @@ public class PaintCalculator {
 
     }
 
+    private void writeFile() throws IOException {
+        RoomWriter writer = new RoomWriter();
+        writer.writeRoomFile("rooms.dat", roomList);
+    }
+    
     private void printRooms() {
         if (roomList.isEmpty()) {
             System.out.println("No rooms yet");
