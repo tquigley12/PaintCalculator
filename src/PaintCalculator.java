@@ -13,11 +13,11 @@ public class PaintCalculator implements Serializable {
     private List<Room> roomList = new ArrayList<Room>();
     private Scanner keyboard;
     
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         new PaintCalculator();
     }
 
-    public PaintCalculator() throws FileNotFoundException, IOException {
+    public PaintCalculator() throws FileNotFoundException, IOException, ClassNotFoundException {
         keyboard = new Scanner(System.in);
         
         int option = 0;
@@ -38,7 +38,7 @@ public class PaintCalculator implements Serializable {
                         // roomWriter.writeRoomFile(fileName, roomList);
                         break;
                     case 3:
-                        // readFile();
+                        readFile();
                         // RoomReader roomReader = new RoomReader();
                         // roomReader.readRoomFile(fileName);
                         break;
@@ -59,6 +59,11 @@ public class PaintCalculator implements Serializable {
     private void writeFile() throws IOException {
         RoomWriter writer = new RoomWriter();
         writer.writeRoomFile("rooms.dat", roomList);
+    }
+    
+    private void readFile() throws IOException, FileNotFoundException, ClassNotFoundException {
+        RoomReader reader = new RoomReader();
+        roomList = reader.readRoomFile("rooms.dat");
     }
     
     private void printRooms() {
