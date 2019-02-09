@@ -32,13 +32,9 @@ public class PaintCalculator implements Serializable {
                         break;
                     case 2:
                         writeFile();
-                        // RoomWriter roomWriter = new RoomWriter();
-                        // roomWriter.writeRoomFile(fileName, roomList);
                         break;
                     case 3:
                         readFile();
-                        // RoomReader roomReader = new RoomReader();
-                        // roomReader.readRoomFile(fileName);
                         break;
                     case 4:
                         printRooms();
@@ -107,6 +103,6 @@ public class PaintCalculator implements Serializable {
         } catch (BadWidthException | BadHeightException e) {
             System.out.println("Could not create room.");
         }
-
     }
+    
 }
