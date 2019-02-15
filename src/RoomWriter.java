@@ -20,15 +20,15 @@ public class RoomWriter {
         
     }
 
-    public void writeRoomFile(String fileName, List<Room> roomList) throws FileNotFoundException, IOException {
+    public void writeRoomFile(String fileName, List<Paintable> paintableList) throws FileNotFoundException, IOException {
         // create the binary ouptut objects.
         FileOutputStream fos = new FileOutputStream(fileName);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         
-        for (Room room : roomList) {
+        for (Paintable room : paintableList) {
             oos.writeObject(room);
         }
 
     }
-    
+
 }

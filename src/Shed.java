@@ -2,31 +2,31 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Room implements Paintable, Serializable {
 
-    private ArrayList<Wall> wallList;
+public class Shed implements Paintable, Serializable {
+    private ArrayList<Wall> outerWallList;
     private static final int SQUARE_FEET_PER_GALLON = 400;
-    private int roomNum = 0;
+    private int shedNum = 0;
 
-    public Room(double length, double width, double height, int roomCount) throws BadWidthException, BadHeightException {
-        wallList = new ArrayList<Wall>();
+    public Shed(double length, double width, double height, int roomCount) throws BadWidthException, BadHeightException {
+        outerWallList = new ArrayList<Wall>();
 
         Wall wallA = new Wall(length, height);
-        wallList.add(wallA);
+        outerWallList.add(wallA);
         Wall wallB = new Wall(length, height);
-        wallList.add(wallB);
+        outerWallList.add(wallB);
         Wall wallC = new Wall(width, height);
-        wallList.add(wallC);
+        outerWallList.add(wallC);
         Wall wallD = new Wall(width, height);
-        wallList.add(wallD);
-        roomNum = roomCount;
+        outerWallList.add(wallD);
+        shedNum = roomCount;
     }
-
+    
     public double getArea() {
         double area = 0;
 
-        for (int i = 0; i < wallList.size(); i++) {
-            Wall w = wallList.get(i);
+        for (int i = 0; i < outerWallList.size(); i++) {
+            Wall w = outerWallList.get(i);
             area += w.getArea();
         }
 
@@ -49,10 +49,11 @@ public class Room implements Paintable, Serializable {
     
     @Override
     public String toString() {
-        // return the room number and area in the toString
-        String str = "Room number: " + roomNum + 
+        // return the shed number and area in the toString
+        String str = "Shed number: " + shedNum + 
                      "\nArea: " + getArea();
         return str;
     }
     
 }
+

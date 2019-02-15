@@ -27,8 +27,8 @@ public class RoomReader implements Serializable {
     
     }
     
-    public List<Room> readRoomFile(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
-            List<Room> roomList = new ArrayList<Room>();
+    public List<Paintable> readRoomFile(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
+            List<Paintable> paintableList = new ArrayList<Paintable>();
             
             FileInputStream fis = new FileInputStream(fileName);
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -37,14 +37,14 @@ public class RoomReader implements Serializable {
             try {
                 // Allow the EOF Exception to happen
                 while ((obj = ois.readObject()) != null ) {
-                    Room room = (Room) obj;
-                    roomList.add(room);
+                    Paintable room = (Paintable) obj;
+                    paintableList.add(room);
                 }
             } catch (EOFException e) {
                 // Do nothing
             }
             System.out.println("method readRoomFile was successful ");
-            return roomList;
+            return paintableList;
         }
 
 }
